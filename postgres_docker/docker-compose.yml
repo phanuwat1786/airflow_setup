@@ -1,20 +1,18 @@
 
 services:
   postgres:
-    image: postgres:16
-    container_name: airflow-postgres
+    image: postgres:13
+    container_name: airflow-postgres-13
     ports:
-      - 5433:5433
+      - 5434:5432
     environment:
       - POSTGRES_PASSWORD=airflow
       - POSTGRES_USER=airflow
       - POSTGRES_DB=airflow
-      - PGDATA=/db/data/pgsql16
-    command: postgres -c 'port=5433' 
     networks:
       - airflow_network
     volumes:
-      - postgres-db-volume-standalone:/db/data/pgsql16
+      - postgres-db-volume-13:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
@@ -28,4 +26,4 @@ networks:
     driver: bridge
 
 volumes:
-  postgres-db-volume-standalone:
+  postgres-db-volume-13:
