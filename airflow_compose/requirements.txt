@@ -1,0 +1,4 @@
+gspread==6.1.4
+apache-airflow-providers-microsoft-mssql==4.0.0
+oauth2client
+gspread_dataframe
